@@ -12,7 +12,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:task2021/puml-parser-php.git"
+            "url": "git@github.com:tasuku43/puml-parser-php.git"
         }
     ],
     "autoload": {
