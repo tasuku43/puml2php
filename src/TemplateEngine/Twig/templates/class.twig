@@ -1,0 +1,12 @@
+{{ '<?php' }}
+declare(strict_types=1);
+
+namespace {{ difinition.getPackage }};
+
+/**
+* Class {{ difinition.getName }}
+* @package {{ difinition.getPackage }}
+*/
+{{ difinition.getType }} {{ difinition.getName }}{% if difinition.extends %} extends {{ difinition.extends }}{% endif %}{% if difinition.implements %} implements {{ difinition.implements }}{% endif %}
+{
+}
