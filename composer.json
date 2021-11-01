@@ -1,0 +1,31 @@
+{
+    "name": "tasuku43/phpcg",
+    "description": "Generate php code from plantuml files.",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "tasuku43",
+            "email": "task.teckac@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:task2021/puml-parser-php.git"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PhpGc\\": "src/",
+            "PhpGc\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "task2021/puml-parser-php": "0.2.1",
+        "twig/twig": "^3.3"
+    },
+    "bin": [
+        "phpcg"
+    ]
+}
