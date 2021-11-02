@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df873b3020857103eda363bf5b0bf5be",
+    "content-hash": "52c9b032bee1f0999e7e7e23aa0ac26c",
     "packages": [],
     "packages-dev": [
         {
@@ -167,17 +167,17 @@
             "time": "2021-05-27T12:26:48+00:00"
         },
         {
-            "name": "task2021/puml-parser-php",
-            "version": "v0.2.1",
+            "name": "tasuku43/puml-parser",
+            "version": "v0.2.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/task2021/puml-parser-php.git",
-                "reference": "038fb8bad4bdadd7959d9d33a6a3e520463d6917"
+                "url": "https://github.com/tasuku43/puml-parser-php.git",
+                "reference": "a3f76e8cd0bc6d4bcdbf02a04e3352746dbc0a7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/task2021/puml-parser-php/zipball/038fb8bad4bdadd7959d9d33a6a3e520463d6917",
-                "reference": "038fb8bad4bdadd7959d9d33a6a3e520463d6917",
+                "url": "https://api.github.com/repos/tasuku43/puml-parser-php/zipball/a3f76e8cd0bc6d4bcdbf02a04e3352746dbc0a7d",
+                "reference": "a3f76e8cd0bc6d4bcdbf02a04e3352746dbc0a7d",
                 "shasum": ""
             },
             "require": {
@@ -198,10 +198,11 @@
             ],
             "authors": [
                 {
-                    "name": "task2021"
+                    "name": "tasuku43",
+                    "email": "task.teckac@gmail.com"
                 }
             ],
-            "description": "This is a php parser for plantuml source file.",
+            "description": "This is a php parser for plantuml file.",
             "keywords": [
                 "parser",
                 "php",
@@ -209,10 +210,10 @@
                 "puml"
             ],
             "support": {
-                "source": "https://github.com/task2021/puml-parser-php/tree/v0.2.1",
-                "issues": "https://github.com/task2021/puml-parser-php/issues"
+                "source": "https://github.com/tasuku43/puml-parser-php/tree/v0.2.2",
+                "issues": "https://github.com/tasuku43/puml-parser-php/issues"
             },
-            "time": "2021-10-31T07:12:47+00:00"
+            "time": "2021-11-02T12:36:58+00:00"
         },
         {
             "name": "twig/twig",

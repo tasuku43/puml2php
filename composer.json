@@ -22,8 +22,8 @@
         }
     },
     "require-dev": {
-        "task2021/puml-parser-php": "0.2.1",
-        "twig/twig": "^3.3"
+        "twig/twig": "^3.3",
+        "tasuku43/puml-parser": "0.2.*"
     },
     "bin": [
         "phpcg"
