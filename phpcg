@@ -8,7 +8,7 @@ use PhpGc\TemplateEngine\Twig\TwigTemplateEngine;
 use PumlParser\Lexer\Lexer;
 use PumlParser\Parser\Parser;
 
-foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../vendor/autoload.php', __DIR__ . '/../autoload.php'] as $file) {
+foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../vendor/autoload.php', __DIR__ . '/../../autoload.php'] as $file) {
     if (file_exists($file)) {
         require $file;
         break;
@@ -31,7 +31,7 @@ if (!str_ends_with($filePath, '.puml')) {
 
 $code_generator = new CodeGenerator(
     TwigTemplateEngine::newInstance(),
-    new FilePathAssignorPsr4(require __DIR__ . '/../composer/autoload_psr4.php'),
+    new FilePathAssignorPsr4(require __DIR__ . '/../../composer/autoload_psr4.php'),
     new Parser(Lexer::fromSourceFile($filePath))
 );
 
