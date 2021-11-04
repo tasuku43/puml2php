@@ -1,5 +1,5 @@
 {
-    "name": "tasuku43/phpcg",
+    "name": "puml2php/puml2php",
     "description": "Generate php code from plantuml files.",
     "minimum-stability": "stable",
     "license": "proprietary",
@@ -23,7 +23,7 @@
     },
     "require-dev": {
         "twig/twig": "^3.3",
-        "tasuku43/puml-parser": "0.2.*"
+        "puml2php/puml-parser": "^0.2.7"
     },
     "bin": [
         "phpcg"

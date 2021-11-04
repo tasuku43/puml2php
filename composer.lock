@@ -4,9 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "52c9b032bee1f0999e7e7e23aa0ac26c",
+    "content-hash": "d0cf06288e1ea445af4652afa444cc04",
     "packages": [],
     "packages-dev": [
+        {
+            "name": "puml2php/puml-parser",
+            "version": "v0.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tasuku43/puml-parser-php.git",
+                "reference": "80c8885a14bc0644634ad0fa04a8b220a8dc1d81"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tasuku43/puml-parser-php/zipball/80c8885a14bc0644634ad0fa04a8b220a8dc1d81",
+                "reference": "80c8885a14bc0644634ad0fa04a8b220a8dc1d81",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PumlParser\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "PumlParser\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "tasuku43",
+                    "email": "task.teckac@gmail.com"
+                }
+            ],
+            "description": "This is a php parser for plantuml file.",
+            "keywords": [
+                "parser",
+                "php",
+                "plantuml",
+                "puml"
+            ],
+            "support": {
+                "source": "https://github.com/tasuku43/puml-parser-php/tree/v0.2.7",
+                "issues": "https://github.com/tasuku43/puml-parser-php/issues"
+            },
+            "time": "2021-11-04T15:39:08+00:00"
+        },
         {
             "name": "symfony/polyfill-ctype",
             "version": "v1.23.0",
@@ -165,55 +218,6 @@
                 }
             ],
             "time": "2021-05-27T12:26:48+00:00"
-        },
-        {
-            "name": "tasuku43/puml-parser",
-            "version": "v0.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tasuku43/puml-parser-php.git",
-                "reference": "a3f76e8cd0bc6d4bcdbf02a04e3352746dbc0a7d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tasuku43/puml-parser-php/zipball/a3f76e8cd0bc6d4bcdbf02a04e3352746dbc0a7d",
-                "reference": "a3f76e8cd0bc6d4bcdbf02a04e3352746dbc0a7d",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "PumlParser\\": "src/",
-                    "PumlParser\\Tests\\": "tests/"
-                }
-            },
-            "license": [
-                "proprietary"
-            ],
-            "authors": [
-                {
-                    "name": "tasuku43",
-                    "email": "task.teckac@gmail.com"
-                }
-            ],
-            "description": "This is a php parser for plantuml file.",
-            "keywords": [
-                "parser",
-                "php",
-                "plantuml",
-                "puml"
-            ],
-            "support": {
-                "source": "https://github.com/tasuku43/puml-parser-php/tree/v0.2.2",
-                "issues": "https://github.com/tasuku43/puml-parser-php/issues"
-            },
-            "time": "2021-11-02T12:36:58+00:00"
         },
         {
             "name": "twig/twig",
