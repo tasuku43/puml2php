@@ -26,6 +26,6 @@
         "puml2php/puml-parser": "^0.2.7"
     },
     "bin": [
-        "phpcg"
+        "puml2php"
     ]
 }
