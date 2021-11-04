@@ -2,10 +2,9 @@
 <?php
 declare(strict_types=1);
 
-use PhpGc\CodeGenerator;
+use PhpGc\Puml2PhpCompiler;
 use PhpGc\FilePathAssignorPsr4;
 use PhpGc\TemplateEngine\Twig\TwigTemplateEngine;
-use PumlParser\Lexer\Lexer;
 use PumlParser\Parser\Parser;
 
 foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../vendor/autoload.php', __DIR__ . '/../../autoload.php'] as $file) {
@@ -15,24 +14,22 @@ foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../vendor/autoload.php
     }
 }
 
-$filePath = $_SERVER['argv'][1];
+$pumlFilePath = $_SERVER['argv'][1];
 
-if (!file_exists($filePath)) {
+if (!file_exists($pumlFilePath)) {
     fwrite(STDERR, 'File not exists.');
 
     die(1);
 }
 
-if (!str_ends_with($filePath, '.puml')) {
+if (!str_ends_with($pumlFilePath, '.puml')) {
     fwrite(STDERR, 'The file specified is not a plantuml file.');
 
     die(1);
 }
 
-$code_generator = new CodeGenerator(
-    TwigTemplateEngine::newInstance(),
-    new FilePathAssignorPsr4(require __DIR__ . '/../../composer/autoload_psr4.php'),
-    new Parser(Lexer::fromSourceFile($filePath))
-);
+$psr4map = require __DIR__ . '/../../composer/autoload_psr4.php';
 
-$code_generator->generateClassFile();
+$compiler = new Puml2PhpCompiler(TwigTemplateEngine::newInstance(), new FilePathAssignorPsr4($psr4map), new Parser());
+
+$compiler->exec($pumlFilePath);

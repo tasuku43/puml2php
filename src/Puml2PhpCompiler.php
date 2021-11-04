@@ -8,7 +8,7 @@ use PumlParser\Lexer\Token\Exception\TokenException;
 use PumlParser\Parser\Exception\ParserException;
 use PumlParser\Parser\Parser;
 
-class CodeGenerator
+class Puml2PhpCompiler
 {
     /**
      * PhpGcGenerator constructor.
@@ -28,9 +28,11 @@ class CodeGenerator
      * @throws ParserException
      * @throws TokenException
      */
-    public function generateClassFile(): void
+    public function exec(string $pumlFilePath): void
     {
-        foreach ($this->parser->parse()->toDtos() as $difinition) {
+        $difinitions = $this->parser->parse($pumlFilePath)->toDtos();
+
+        foreach ($difinitions as $difinition) {
             $filePath = $this->filePathAssignor->assign($difinition);
 
             $dir = rtrim($filePath, $difinition->getName() . '.php');
