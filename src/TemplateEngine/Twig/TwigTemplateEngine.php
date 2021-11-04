@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace PhpGc\TemplateEngine\Twig;
+namespace Puml2Php\TemplateEngine\Twig;
 
-use PhpGc\TemplateEngine\TemplateEngine;
+use Puml2Php\TemplateEngine\TemplateEngine;
 use PumlParser\Dto\Difinition;
 use Twig\Environment;
 use Twig\Error\LoaderError;

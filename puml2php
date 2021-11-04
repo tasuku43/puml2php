@@ -2,12 +2,12 @@
 <?php
 declare(strict_types=1);
 
-use PhpGc\Puml2PhpCompiler;
-use PhpGc\FilePathAssignorPsr4;
-use PhpGc\TemplateEngine\Twig\TwigTemplateEngine;
+use Puml2Php\Puml2PhpCompiler;
+use Puml2Php\FilePathAssignorPsr4;
+use Puml2Php\TemplateEngine\Twig\TwigTemplateEngine;
 use PumlParser\Parser\Parser;
 
-foreach ([__DIR__ . '/../../../autoload.php', __DIR__ . '/../vendor/autoload.php', __DIR__ . '/../../autoload.php'] as $file) {
+foreach ([ __DIR__ . '/vendor/autoload.php', __DIR__ . '/../../autoload.php'] as $file) {
     if (file_exists($file)) {
         require $file;
         break;
@@ -28,7 +28,14 @@ if (!str_ends_with($pumlFilePath, '.puml')) {
     die(1);
 }
 
-$psr4map = require __DIR__ . '/../../composer/autoload_psr4.php';
+foreach ([__DIR__ . '/vendor/composer/autoload_psr4.php', __DIR__ . '/../../composer/autoload_psr4.php'] as $file) {
+    if (file_exists($file)) {
+        require $file;
+        break;
+    }
+}
+
+$psr4map = require __DIR__ . '/vendor/composer/autoload_psr4.php';
 
 $compiler = new Puml2PhpCompiler(TwigTemplateEngine::newInstance(), new FilePathAssignorPsr4($psr4map), new Parser());
 

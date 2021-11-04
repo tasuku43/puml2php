@@ -17,8 +17,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "PhpGc\\": "src/",
-            "PhpGc\\Tests\\": "tests/"
+            "Puml2Php\\": "src/",
+            "Puml2Php\\Tests\\": "tests/"
         }
     },
     "require-dev": {

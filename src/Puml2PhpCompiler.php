@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace PhpGc;
+namespace Puml2Php;
 
-use PhpGc\TemplateEngine\TemplateEngine;
+use Puml2Php\TemplateEngine\TemplateEngine;
 use PumlParser\Lexer\Token\Exception\TokenException;
 use PumlParser\Parser\Exception\ParserException;
 use PumlParser\Parser\Parser;
@@ -11,7 +11,7 @@ use PumlParser\Parser\Parser;
 class Puml2PhpCompiler
 {
     /**
-     * PhpGcGenerator constructor.
+     * Puml2PhpCompiler constructor.
      * @param TemplateEngine $templateEngine
      * @param FilePathAssignorPsr4 $filePathAssignor
      * @param Parser $parser
@@ -28,7 +28,7 @@ class Puml2PhpCompiler
      * @throws ParserException
      * @throws TokenException
      */
-    public function exec(string $pumlFilePath): void
+    public function exec(string $pumlFilePath, bool $tryRun = false): void
     {
         $difinitions = $this->parser->parse($pumlFilePath)->toDtos();
 

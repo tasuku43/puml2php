@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace PhpGc;
+namespace Puml2Php;
 
 use PumlParser\Dto\Difinition;
 
@@ -14,8 +14,8 @@ class FilePathAssignorPsr4
     public function assign(Difinition $difinition): string
     {
         foreach ($this->psr4Map as $namespaceRoot => $namespaceRootPath) {
-            if (str_starts_with($difinition->getPackage(), $namespaceRoot)) {
-                $relativePath = str_replace("\\", "/", substr($difinition->getPackage(), strlen($namespaceRoot)));
+            if (str_starts_with($difinition->getPackage(), str_replace("\\", "", $namespaceRoot))) {
+                $relativePath = substr($difinition->getPackage(), strlen($namespaceRoot));
 
                 return $namespaceRootPath[0] . '/' . $relativePath  . '/' . $difinition->getName() . '.php';
             }

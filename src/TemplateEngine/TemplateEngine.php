@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace PhpGc\TemplateEngine;
+namespace Puml2Php\TemplateEngine;
 
 use PumlParser\Dto\Difinition;
 
