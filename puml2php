@@ -54,7 +54,7 @@ try {
 }
 
 foreach ($filePaths as $filePath) {
-    fwrite(STDOUT, $filePath . "\n");
+    fwrite(STDOUT, 'Created: ' . substr($filePath, strlen(getcwd() . '/')) . "\n");
 }
 
-fwrite(STDOUT, "\nGenerating code success.\n");
+fwrite(STDOUT, "\nSuccess!\n");
