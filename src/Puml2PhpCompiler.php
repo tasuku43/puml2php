@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace Puml2Php;
 
+use Puml2Php\TemplateEngine\Exception\FailedAssigningFilePath;
 use Puml2Php\TemplateEngine\TemplateEngine;
-use PumlParser\Lexer\Token\Exception\TokenException;
+use PumlParser\Lexer\Token\Exception\TokenizeException;
 use PumlParser\Parser\Exception\ParserException;
 use PumlParser\Parser\Parser;
 
@@ -25,21 +26,22 @@ class Puml2PhpCompiler
     }
 
     /**
-     * @throws ParserException
-     * @throws TokenException
+     * @param string $pumlFilePath
+     * @param bool $dryRun
+     * @return string[]
+     *
+     * @throws TokenizeException|ParserException|FailedAssigningFilePath
      */
-    public function exec(string $pumlFilePath, bool $dryRun = false): void
+    public function exec(string $pumlFilePath, bool $dryRun = false): array
     {
-        fwrite(STDOUT, sprintf("Generating code from '%s'.\n\n", basename($pumlFilePath)));
-
         $difinitions = $this->parser->parse($pumlFilePath)->toDtos();
 
+        $result = [];
+
         foreach ($difinitions as $difinition) {
-            $filePath = $this->filePathAssignor->assign($difinition);
+            $result[] = $filePath = $this->filePathAssignor->assign($difinition);
 
             $dir = rtrim($filePath, $difinition->getName() . '.php');
-
-            fwrite(STDOUT, $filePath . "\n");
 
             if ($dryRun) continue;
 
@@ -50,6 +52,6 @@ class Puml2PhpCompiler
             file_put_contents($filePath, $this->templateEngine->render($difinition));
         }
 
-        fwrite(STDOUT, "\nGenerating code success.\n");
+        return $result;
     }
 }

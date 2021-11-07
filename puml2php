@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 use Puml2Php\Puml2PhpCompiler;
 use Puml2Php\FilePathAssignorPsr4;
+use Puml2Php\TemplateEngine\Exception\FailedAssigningFilePath;
 use Puml2Php\TemplateEngine\Twig\TwigTemplateEngine;
+use PumlParser\Lexer\Token\Exception\TokenizeException;
+use PumlParser\Parser\Exception\ParserException;
 use PumlParser\Parser\Parser;
 
 foreach ([ __DIR__ . '/vendor/autoload.php', __DIR__ . '/../../autoload.php'] as $file) {
@@ -39,4 +42,19 @@ $psr4map = require __DIR__ . '/vendor/composer/autoload_psr4.php';
 
 $compiler = new Puml2PhpCompiler(TwigTemplateEngine::newInstance(), new FilePathAssignorPsr4($psr4map), new Parser());
 
-$compiler->exec($pumlFilePath, true);
+try {
+    fwrite(STDOUT, sprintf("Generating code from '%s'.\n\n", basename($pumlFilePath)));
+
+    $filePaths = $compiler->exec($pumlFilePath, true);
+} catch (TokenizeException|ParserException|FailedAssigningFilePath $exception) {
+    fwrite(STDOUT, sprintf("Generating code failed. %s\n", $exception->getMessage()));
+    fwrite(STDOUT, sprintf("Exception detected on %s\n", $exception->getFile()));
+
+    die(1);
+}
+
+foreach ($filePaths as $filePath) {
+    fwrite(STDOUT, $filePath . "\n");
+}
+
+fwrite(STDOUT, "\nGenerating code success.\n");

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Puml2Php;
 
+use Puml2Php\TemplateEngine\Exception\FailedAssigningFilePath;
 use PumlParser\Dto\Difinition;
 
 class FilePathAssignorPsr4
@@ -11,6 +12,9 @@ class FilePathAssignorPsr4
     {
     }
 
+    /**
+     * @throws FailedAssigningFilePath
+     */
     public function assign(Difinition $difinition): string
     {
         foreach ($this->psr4Map as $namespaceRoot => $namespaceRootPath) {
@@ -25,6 +29,6 @@ class FilePathAssignorPsr4
             }
         }
 
-        throw new \InvalidArgumentException();
+        throw new FailedAssigningFilePath('Not found the namespace definition. Please check the definition of auroload in compser.json.');
     }
 }
