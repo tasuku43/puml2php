@@ -28,8 +28,10 @@ class Puml2PhpCompiler
      * @throws ParserException
      * @throws TokenException
      */
-    public function exec(string $pumlFilePath, bool $tryRun = false): void
+    public function exec(string $pumlFilePath, bool $dryRun = false): void
     {
+        fwrite(STDOUT, sprintf("Generating code from '%s'.\n\n", basename($pumlFilePath)));
+
         $difinitions = $this->parser->parse($pumlFilePath)->toDtos();
 
         foreach ($difinitions as $difinition) {
@@ -37,11 +39,17 @@ class Puml2PhpCompiler
 
             $dir = rtrim($filePath, $difinition->getName() . '.php');
 
+            fwrite(STDOUT, $filePath . "\n");
+
+            if ($dryRun) continue;
+
             if (!file_exists($dir)) {
                 mkdir($dir, 0777, true);
             }
 
             file_put_contents($filePath, $this->templateEngine->render($difinition));
         }
+
+        fwrite(STDOUT, "\nGenerating code success.\n");
     }
 }
