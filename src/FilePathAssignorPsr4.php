@@ -14,6 +14,10 @@ class FilePathAssignorPsr4
     public function assign(Difinition $difinition): string
     {
         foreach ($this->psr4Map as $namespaceRoot => $namespaceRootPath) {
+            if ($difinition->getPackage() === str_replace("\\", "", $namespaceRoot)) {
+                return $namespaceRootPath[0] . '/' . $difinition->getName() . '.php';
+            }
+
             if (str_starts_with($difinition->getPackage(), str_replace("\\", "", $namespaceRoot))) {
                 $relativePath = substr($difinition->getPackage(), strlen($namespaceRoot));
 

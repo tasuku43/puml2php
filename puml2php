@@ -39,4 +39,4 @@ $psr4map = require __DIR__ . '/vendor/composer/autoload_psr4.php';
 
 $compiler = new Puml2PhpCompiler(TwigTemplateEngine::newInstance(), new FilePathAssignorPsr4($psr4map), new Parser());
 
-$compiler->exec($pumlFilePath);
+$compiler->exec($pumlFilePath, true);
