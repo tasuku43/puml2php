@@ -47,8 +47,8 @@ try {
 
     $filePaths = $compiler->exec($pumlFilePath);
 } catch (TokenizeException|ParserException|FailedAssigningFilePath $exception) {
-    fwrite(STDOUT, sprintf("Generating code failed. %s\n", $exception->getMessage()));
-    fwrite(STDOUT, sprintf("Exception detected on %s\n", $exception->getFile()));
+    fwrite(STDERR, sprintf("Generating code failed. %s\n", $exception->getMessage()));
+    fwrite(STDERR, sprintf("Exception detected on %s\n", $exception->getFile()));
 
     die(1);
 }
