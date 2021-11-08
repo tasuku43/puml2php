@@ -41,9 +41,9 @@ class Puml2PhpCompiler
         foreach ($difinitions as $difinition) {
             $result[] = $filePath = $this->filePathAssignor->assign($difinition);
 
-            $dir = rtrim($filePath, $difinition->getName() . '.php');
-
             if ($dryRun) continue;
+
+            $dir = rtrim($filePath, $difinition->getName() . '.php');
 
             if (!file_exists($dir)) {
                 mkdir($dir, 0777, true);

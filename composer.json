@@ -18,6 +18,10 @@
     "autoload": {
         "psr-4": {
             "Puml2Php\\": "src/",
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Puml2Php\\Tests\\": "tests/"
         }
     },
