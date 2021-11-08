@@ -1,12 +1,21 @@
 {{ '<?php' }}
 declare(strict_types=1);
 
-namespace {{ difinition.getPackage }};
+{{ 'namespace ' }}{{ difinition.getPackage }};
+{% if use is not empty %}
+
+{% for line in use %}
+{{- line }};
+{% endfor %}
+{% endif %}
 
 /**
-* Class {{ difinition.getName }}
-* @package {{ difinition.getPackage }}
-*/
-{{ difinition.getType }} {{ difinition.getName }}{% if difinition.extends %} extends {{ difinition.extends }}{% endif %}{% if difinition.implements %} implements {{ difinition.implements }}{% endif %}
+ * Class {{ difinition.getName }}
+ * @package {{ difinition.getPackage }}
+ */
+{{ difinition.getType }} {{ difinition.getName }}{% if difinition.getParents %}
+ extends {{ difinition.getParentNames|join(', ') }}{% endif %}{% if difinition.getInterfaces %}
+ implements {{ difinition.getInterfaceNames|join(', ') }}{% endif %}
+
 {
 }

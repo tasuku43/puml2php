@@ -45,7 +45,7 @@ $compiler = new Puml2PhpCompiler(TwigTemplateEngine::newInstance(), new FilePath
 try {
     fwrite(STDOUT, sprintf("Generating code from '%s'.\n\n", basename($pumlFilePath)));
 
-    $filePaths = $compiler->exec($pumlFilePath, true);
+    $filePaths = $compiler->exec($pumlFilePath);
 } catch (TokenizeException|ParserException|FailedAssigningFilePath $exception) {
     fwrite(STDOUT, sprintf("Generating code failed. %s\n", $exception->getMessage()));
     fwrite(STDOUT, sprintf("Exception detected on %s\n", $exception->getFile()));

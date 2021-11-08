@@ -33,8 +33,31 @@ class TwigTemplateEngine implements TemplateEngine
      */
     public function render(Difinition $difinition): string
     {
+        var_dump($difinition->getInterfaceNames());
         return $this->twig->render(self::TEMPLATE_NAME, [
-            'difinition' => $difinition
+            'difinition' => $difinition,
+            'use' => $this->useArray($difinition)
         ]);
+    }
+
+    /**
+     * @param Difinition $difinition
+     */
+    private function useArray(Difinition $difinition): array
+    {
+        $use = [];
+
+        foreach ($difinition->getParents() as $parent) {
+            if ($difinition->getPackage() === $parent->getPackage()) continue;
+
+            $use[] = 'use ' . $parent->getPackage() . "\\" . $parent->getName();
+        }
+        foreach ($difinition->getInterfaces() as $interface) {
+            if ($difinition->getPackage() === $interface->getPackage()) continue;
+
+            $use[] = 'use ' . $interface->getPackage() . "\\" . $interface->getName();
+        }
+
+        return $use;
     }
 }
