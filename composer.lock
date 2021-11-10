@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d0cf06288e1ea445af4652afa444cc04",
+    "content-hash": "0fc8fd2d3a8921053e0672fcf892c792",
     "packages": [],
     "packages-dev": [
         {
             "name": "puml2php/puml-parser",
-            "version": "v0.2.7",
+            "version": "v1.0.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tasuku43/puml-parser-php.git",
-                "reference": "80c8885a14bc0644634ad0fa04a8b220a8dc1d81"
+                "reference": "410f7f62598d91d87cbecdc372f5b79aeeed8a95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tasuku43/puml-parser-php/zipball/80c8885a14bc0644634ad0fa04a8b220a8dc1d81",
-                "reference": "80c8885a14bc0644634ad0fa04a8b220a8dc1d81",
+                "url": "https://api.github.com/repos/tasuku43/puml-parser-php/zipball/410f7f62598d91d87cbecdc372f5b79aeeed8a95",
+                "reference": "410f7f62598d91d87cbecdc372f5b79aeeed8a95",
                 "shasum": ""
             },
             "require": {
@@ -33,11 +33,7 @@
                     "PumlParser\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "PumlParser\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "proprietary"
             ],
@@ -55,10 +51,10 @@
                 "puml"
             ],
             "support": {
-                "source": "https://github.com/tasuku43/puml-parser-php/tree/v0.2.7",
-                "issues": "https://github.com/tasuku43/puml-parser-php/issues"
+                "issues": "https://github.com/tasuku43/puml-parser-php/issues",
+                "source": "https://github.com/tasuku43/puml-parser-php/tree/v1.0.0-beta"
             },
-            "time": "2021-11-04T15:39:08+00:00"
+            "time": "2021-11-10T15:24:06+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -298,7 +294,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "puml2php/puml-parser": 10
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
