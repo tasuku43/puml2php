@@ -33,7 +33,6 @@ class TwigTemplateEngine implements TemplateEngine
      */
     public function render(Difinition $difinition): string
     {
-        var_dump($difinition->getInterfaceNames());
         return $this->twig->render(self::TEMPLATE_NAME, [
             'difinition' => $difinition,
             'use' => $this->useArray($difinition)
