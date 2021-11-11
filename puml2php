@@ -33,12 +33,10 @@ if (!str_ends_with($pumlFilePath, '.puml')) {
 
 foreach ([__DIR__ . '/vendor/composer/autoload_psr4.php', __DIR__ . '/../../composer/autoload_psr4.php'] as $file) {
     if (file_exists($file)) {
-        require $file;
+        $psr4map = require $file;
         break;
     }
 }
-
-$psr4map = require __DIR__ . '/vendor/composer/autoload_psr4.php';
 
 $compiler = new Puml2PhpCompiler(TwigTemplateEngine::newInstance(), new FilePathAssignorPsr4($psr4map), new Parser());
 
