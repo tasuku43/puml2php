@@ -4,21 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0fc8fd2d3a8921053e0672fcf892c792",
-    "packages": [],
-    "packages-dev": [
+    "content-hash": "2c40122e0b8b92ba45440c241dace5a0",
+    "packages": [
         {
             "name": "puml2php/puml-parser",
-            "version": "v1.0.0-beta",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tasuku43/puml-parser-php.git",
-                "reference": "410f7f62598d91d87cbecdc372f5b79aeeed8a95"
+                "reference": "fc2f32cab17602aa30df2f67c0c2d2c8295e10d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tasuku43/puml-parser-php/zipball/410f7f62598d91d87cbecdc372f5b79aeeed8a95",
-                "reference": "410f7f62598d91d87cbecdc372f5b79aeeed8a95",
+                "url": "https://api.github.com/repos/tasuku43/puml-parser-php/zipball/fc2f32cab17602aa30df2f67c0c2d2c8295e10d6",
+                "reference": "fc2f32cab17602aa30df2f67c0c2d2c8295e10d6",
                 "shasum": ""
             },
             "require": {
@@ -52,9 +51,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tasuku43/puml-parser-php/issues",
-                "source": "https://github.com/tasuku43/puml-parser-php/tree/v1.0.0-beta"
+                "source": "https://github.com/tasuku43/puml-parser-php/tree/v1.0.0"
             },
-            "time": "2021-11-10T15:24:06+00:00"
+            "time": "2021-11-11T15:58:19+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -292,11 +291,10 @@
             "time": "2021-09-17T08:44:23+00:00"
         }
     ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "puml2php/puml-parser": 10
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
