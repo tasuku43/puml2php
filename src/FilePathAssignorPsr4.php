@@ -25,7 +25,7 @@ class FilePathAssignorPsr4
             if (str_starts_with($difinition->getPackage(), $namespaceRoot)) {
                 $relativePath = substr($difinition->getPackage(), strlen($namespaceRoot));
 
-                str_replace("\\", "/", $relativePath);
+                $relativePath = str_replace("\\", "/", $relativePath);
 
                 return $namespaceRootPath[0] . '/' . $relativePath  . '/' . $difinition->getName() . '.php';
             }
