@@ -18,7 +18,16 @@ foreach ([ __DIR__ . '/vendor/autoload.php', __DIR__ . '/../../autoload.php'] as
     }
 }
 
-$pumlFilePath = $_SERVER['argv'][1];
+$pumlFilePath = '';
+$dryRun = false;
+
+foreach (array_slice($_SERVER['argv'], 1) as $argv) {
+    if (str_ends_with($argv, '.puml')) {
+        $pumlFilePath = $argv;
+    } elseif ($argv === '--dry-run') {
+        $dryRun = true;
+    }
+}
 
 if (!file_exists($pumlFilePath)) {
     fwrite(STDERR, 'File not exists.');
@@ -44,7 +53,7 @@ $compiler = new Puml2PhpCompiler(TwigTemplateEngine::newInstance(), new FilePath
 try {
     fwrite(STDOUT, sprintf("Generating code from '%s'.\n\n", basename($pumlFilePath)));
 
-    $results = $compiler->exec($pumlFilePath);
+    $results = $compiler->exec($pumlFilePath, $dryRun);
 } catch (TokenizeException|ParserException|FailedAssigningFilePath $exception) {
     fwrite(STDERR, sprintf("Generating code failed. %s\n", $exception->getMessage()));
     fwrite(STDERR, sprintf("Exception detected on %s\n", $exception->getFile()));
@@ -65,4 +74,4 @@ foreach ($results as $result) {
     fwrite(STDOUT, $message);
 }
 
-fwrite(STDOUT, "\nSuccess!\n");
+fwrite(STDOUT, "\nSuccess!");
