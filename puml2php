@@ -2,6 +2,7 @@
 <?php
 declare(strict_types=1);
 
+use Puml2Php\CompileResult;
 use Puml2Php\Puml2PhpCompiler;
 use Puml2Php\FilePathAssignorPsr4;
 use Puml2Php\TemplateEngine\Exception\FailedAssigningFilePath;
@@ -43,7 +44,7 @@ $compiler = new Puml2PhpCompiler(TwigTemplateEngine::newInstance(), new FilePath
 try {
     fwrite(STDOUT, sprintf("Generating code from '%s'.\n\n", basename($pumlFilePath)));
 
-    $filePaths = $compiler->exec($pumlFilePath);
+    $results = $compiler->exec($pumlFilePath);
 } catch (TokenizeException|ParserException|FailedAssigningFilePath $exception) {
     fwrite(STDERR, sprintf("Generating code failed. %s\n", $exception->getMessage()));
     fwrite(STDERR, sprintf("Exception detected on %s\n", $exception->getFile()));
@@ -51,8 +52,17 @@ try {
     die(1);
 }
 
-foreach ($filePaths as $filePath) {
-    fwrite(STDOUT, 'Created: ' . substr($filePath, strlen(getcwd() . '/')) . "\n");
+foreach ($results as $result) {
+    assert($result instanceof CompileResult);
+
+    $relativeFilePath = substr($result->getFilePath(), strlen(getcwd() . '/'));
+
+    $message = match ($result->getType()) {
+        CompileResult::SKIP => sprintf(" - Skipped: %s is already exists.\n", $relativeFilePath),
+        CompileResult::CREATED => sprintf(" - Created: %s\n", $relativeFilePath)
+    };
+
+    fwrite(STDOUT, $message);
 }
 
 fwrite(STDOUT, "\nSuccess!\n");
