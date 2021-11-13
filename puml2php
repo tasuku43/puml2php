@@ -67,7 +67,7 @@ foreach ($results as $result) {
     $relativeFilePath = substr($result->getFilePath(), strlen(getcwd() . '/'));
 
     $message = match ($result->getType()) {
-        CompileResult::SKIP => sprintf(" - Skipped: %s is already exists.\n", $relativeFilePath),
+        CompileResult::SKIPED => sprintf(" - Skipped: %s is already exists.\n", $relativeFilePath),
         CompileResult::CREATED => sprintf(" - Created: %s\n", $relativeFilePath)
     };
 

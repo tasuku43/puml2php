@@ -42,7 +42,7 @@ class Puml2PhpCompiler
             $filePath = $this->filePathAssignor->assign($difinition);
 
             if (file_exists($filePath)) {
-                $result[] = CompileResult::skip($filePath);
+                $result[] = CompileResult::skiped($filePath);
                 continue;
             }
 
