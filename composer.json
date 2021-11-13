@@ -24,6 +24,7 @@
     ],
     "require": {
         "twig/twig": "^3.3",
-        "puml2php/puml-parser": "v1.0.0"
+        "puml2php/puml-parser": "v1.0.0",
+        "php": ">=8"
     }
 }
