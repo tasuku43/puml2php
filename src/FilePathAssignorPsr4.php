@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Puml2Php;
 
-use Puml2Php\TemplateEngine\Exception\FailedAssigningFilePath;
+use Puml2Php\TemplateEngine\Exception\FailedAssigningFilePathException;
 use PumlParser\Dto\Difinition;
 
 class FilePathAssignorPsr4
@@ -13,7 +13,7 @@ class FilePathAssignorPsr4
     }
 
     /**
-     * @throws FailedAssigningFilePath
+     * @throws FailedAssigningFilePathException
      */
     public function assign(Difinition $difinition): string
     {
@@ -31,6 +31,12 @@ class FilePathAssignorPsr4
             }
         }
 
-        throw new FailedAssigningFilePath('Not found the namespace definition. Please check the definition of auroload in compser.json.');
+        throw new FailedAssigningFilePathException(
+            sprintf(
+                "Namespace is not defined in composer.json. FileName: %s, Namespace: %s",
+                $difinition->getName(),
+                $difinition->getPackage()
+            )
+        );
     }
 }

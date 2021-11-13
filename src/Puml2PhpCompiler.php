@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Puml2Php;
 
-use Puml2Php\TemplateEngine\Exception\FailedAssigningFilePath;
+use Puml2Php\TemplateEngine\Exception\FailedAssigningFilePathException;
 use Puml2Php\TemplateEngine\TemplateEngine;
 use PumlParser\Lexer\Token\Exception\TokenizeException;
 use PumlParser\Parser\Exception\ParserException;
@@ -30,7 +30,7 @@ class Puml2PhpCompiler
      * @param bool $dryRun
      * @return string[]
      *
-     * @throws TokenizeException|ParserException|FailedAssigningFilePath
+     * @throws TokenizeException|ParserException|FailedAssigningFilePathException
      */
     public function exec(string $pumlFilePath, bool $dryRun = false): array
     {
@@ -39,7 +39,12 @@ class Puml2PhpCompiler
         $result = [];
 
         foreach ($difinitions as $difinition) {
-            $filePath = $this->filePathAssignor->assign($difinition);
+            try {
+                $filePath = $this->filePathAssignor->assign($difinition);
+            } catch (FailedAssigningFilePathException $exception) {
+                $result[] = CompileResult::failure($exception);
+                continue;
+            }
 
             if (file_exists($filePath)) {
                 $result[] = CompileResult::skiped($filePath);

@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Puml2Php\CompileResult;
 use Puml2Php\Puml2PhpCompiler;
 use Puml2Php\FilePathAssignorPsr4;
-use Puml2Php\TemplateEngine\Exception\FailedAssigningFilePath;
 use Puml2Php\TemplateEngine\Twig\TwigTemplateEngine;
 use PumlParser\Lexer\Token\Exception\TokenizeException;
 use PumlParser\Parser\Exception\ParserException;
@@ -54,7 +53,7 @@ try {
     fwrite(STDOUT, sprintf("Generating code from '%s'.\n\n", basename($pumlFilePath)));
 
     $results = $compiler->exec($pumlFilePath, $dryRun);
-} catch (TokenizeException|ParserException|FailedAssigningFilePath $exception) {
+} catch (TokenizeException|ParserException $exception) {
     fwrite(STDERR, sprintf("Generating code failed. %s\n", $exception->getMessage()));
     fwrite(STDERR, sprintf("Exception detected on %s\n", $exception->getFile()));
 
@@ -64,14 +63,45 @@ try {
 foreach ($results as $result) {
     assert($result instanceof CompileResult);
 
-    $relativeFilePath = substr($result->getFilePath(), strlen(getcwd() . '/'));
-
     $message = match ($result->getType()) {
-        CompileResult::SKIPED => sprintf(" - Skipped: %s is already exists.\n", $relativeFilePath),
-        CompileResult::CREATED => sprintf(" - Created: %s\n", $relativeFilePath)
+        CompileResult::CREATED => sprintf(" - Created: %s\n", relativeFilePath($result)),
+        CompileResult::SKIPED =>  sprintf(" - Skipped: %s is already exists.\n", relativeFilePath($result)),
+        CompileResult::FAILED =>  sprintf(" - Failed: %s\n", $result->getErrorMessage())
     };
 
     fwrite(STDOUT, $message);
 }
 
-fwrite(STDOUT, "\nSuccess!");
+[$createdCount, $skipedCount, $failedCount] = countResultTypes($results);
+
+fwrite(STDOUT, sprintf("\nOperations: %s created, %s skiped, %s failed", $createdCount, $skipedCount, $failedCount));
+
+function relativeFilePath(CompileResult $result): string
+{
+    return substr($result->getFilePath(), strlen(getcwd() . '/'));
+}
+
+function countResultTypes(array $results): array
+{
+    $createdCount = 0;
+    $skipedCount = 0;
+    $failedCount = 0;
+
+    foreach ($results as $result) {
+        assert($result instanceof CompileResult);
+
+        switch ($result->getType()) {
+            case CompileResult::CREATED:
+                $createdCount++;
+                break;
+            case CompileResult::SKIPED:
+                $skipedCount++;
+                break;
+            case CompileResult::FAILED:
+                $failedCount++;
+                break;
+        }
+    }
+
+    return [$createdCount, $skipedCount, $failedCount];
+}
