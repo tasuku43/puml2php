@@ -54,6 +54,51 @@ src
 
 1 directory, 3 files
 ```
+```shell
+$ cat src/Sample2/SampleInterface.php
+<?php
+declare(strict_types=1);
+
+namespace Sample\Sample2;
+
+/**
+ * Class SampleInterface
+ * @package Sample\Sample2
+ */
+interface SampleInterface
+{
+}
+```
+```shell
+$ cat src/Sample2/SampleAbstractClass.php
+<?php
+declare(strict_types=1);
+
+namespace Sample\Sample2;
+
+/**
+ * Class SampleAbstractClass
+ * @package Sample\Sample2
+ */
+abstract class SampleAbstractClass implements SampleInterface
+{
+}
+```
+```shell
+$ cat src/Sample2/SampleClass.php
+<?php
+declare(strict_types=1);
+
+namespace Sample\Sample2;
+
+/**
+ * Class SampleClass
+ * @package Sample\Sample2
+ */
+class SampleClass extends SampleAbstractClass
+{
+}
+```
 
 ## License
 The MIT License (MIT). Please see [LICENSE](https://github.com/tasuku43/puml2php/blob/main/LICENSE) for more information.
