@@ -4,24 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b6053d67e255ad03aa08a1afbee856f4",
+    "content-hash": "77f6ab10d2ba96124ad4e8f7b872414f",
     "packages": [
         {
             "name": "puml2php/puml-parser",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tasuku43/puml-parser-php.git",
-                "reference": "fc2f32cab17602aa30df2f67c0c2d2c8295e10d6"
+                "reference": "06545d6bc47471751067f30a51f44908c28afea0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tasuku43/puml-parser-php/zipball/fc2f32cab17602aa30df2f67c0c2d2c8295e10d6",
-                "reference": "fc2f32cab17602aa30df2f67c0c2d2c8295e10d6",
+                "url": "https://api.github.com/repos/tasuku43/puml-parser-php/zipball/06545d6bc47471751067f30a51f44908c28afea0",
+                "reference": "06545d6bc47471751067f30a51f44908c28afea0",
                 "shasum": ""
             },
             "require": {
-                "ext-mbstring": "*"
+                "ext-mbstring": "*",
+                "php": ">=8"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.5"
@@ -51,9 +52,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tasuku43/puml-parser-php/issues",
-                "source": "https://github.com/tasuku43/puml-parser-php/tree/v1.0.0"
+                "source": "https://github.com/tasuku43/puml-parser-php/tree/v1.1.0"
             },
-            "time": "2021-11-11T15:58:19+00:00"
+            "time": "2021-11-14T07:11:45+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
